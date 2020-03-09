@@ -71,5 +71,5 @@ export async function addExternalIpsRecords(
     createdCount += 1;
   }
 
-  log.info(`Created ${createdCount} DNS records`);
+  log.info(`Added ${createdCount} DNS records`);
 }

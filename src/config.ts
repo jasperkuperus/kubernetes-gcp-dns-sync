@@ -16,6 +16,11 @@ const config = convict({
     default: 120,
     env: 'TTL',
   },
+  cron: {
+    doc: 'The cronjob pattern for when to run this script',
+    default: '0 * * * * *',
+    env: 'CRON',
+  },
   log: {
     level: {
       doc: 'Log everything from this level and above. Set "none" to disable the log stream.',
