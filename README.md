@@ -15,7 +15,10 @@ To run it quickly locally, install it and run while providing the required envir
 
 ```sh
 yarn install
-GOOGLE_APPLICATION_CREDENTIALS=./serviceaccount.json ZONE_NAME=my-dns-name RECORD_NAMES=a.example.com.,b.example.com. yarn start
+GOOGLE_APPLICATION_CREDENTIALS=./serviceaccount.json \
+  ZONE_NAME=my-dns-name \
+  RECORD_NAMES=a.example.com.,b.example.com. \
+  yarn start
 ```
 
 ## Kubernetes
