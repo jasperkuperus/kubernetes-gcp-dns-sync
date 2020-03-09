@@ -16,10 +16,25 @@ const config = convict({
     default: 120,
     env: 'TTL',
   },
+  log: {
+    level: {
+      doc: 'Log everything from this level and above. Set "none" to disable the log stream.',
+      format: ['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'none'],
+      default: 'info',
+      env: 'LOG_LEVEL',
+    },
+    json: {
+      doc: 'Log to JSON format?',
+      default: false,
+      env: 'LOG_JSON',
+    },
+  },
 });
 
 // Validate our input
 config.validate({ allowed: 'strict' });
+
+export default config;
 
 /**
  * Validates the configuration with which we're running this app.

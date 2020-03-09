@@ -1,4 +1,5 @@
 import { DNS, Record, Zone } from '@google-cloud/dns';
+import log from './logger';
 
 // Create Cloud DNS client
 const dns = new DNS();
@@ -28,13 +29,16 @@ export async function deleteMatchingRecords(zone: Zone, names: string[]): Promis
   const [currentRecords] = await zone.getRecords();
 
   // Delete each matching record
+  let deletedCount = 0;
   for (const record of currentRecords) {
     if (record.type === 'A' && names.includes(record.metadata.name)) {
-      console.log(`Deleting A record '${record.metadata.name}'...`);
+      log.info(`Deleting A record '${record.metadata.name}'...`, record.metadata);
       await record.delete();
-      console.log('   Done...');
+      deletedCount += 1;
     }
   }
+
+  log.info(`Deleted ${deletedCount} DNS records`);
 }
 
 /**
@@ -49,8 +53,14 @@ export async function addExternalIpsRecords(
 ): Promise<void> {
   // Loop through each record, because we want to log each record
   // creation. Otherwise we could have used `zone.addRecords(names.map(...))`
+  let createdCount = 0;
   for (const recordName of names) {
-    console.log(`Adding A record for ${recordName}, ttl=${ttl} for IPs [${externalIps}]`);
+    log.info(`Adding A record for '${recordName}'`, {
+      recordName,
+      ttl,
+      externalIps,
+    });
+
     await zone.addRecords(
       new Record(zone, 'A', {
         name: recordName,
@@ -58,6 +68,8 @@ export async function addExternalIpsRecords(
         ttl,
       }),
     );
-    console.log('   Done...');
+    createdCount += 1;
   }
+
+  log.info(`Created ${createdCount} DNS records`);
 }
