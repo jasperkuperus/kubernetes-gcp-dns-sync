@@ -1,17 +1,16 @@
-import { getExternalNodeIPs } from './k8s';
+import { validateConfig } from './config';
 import { getZone, deleteMatchingRecords, addExternalIpsRecords } from './dns';
-
-// TODO: Move these to env variables
-const zoneName = 'promo-app-dns';
-const recordNames = 'test.promo-app.nl.,test2.promo-app.nl.';
-const records = recordNames.split(',');
-const ttl = 120;
+import { getExternalNodeIPs } from './k8s';
 
 (async function() {
+  const options = validateConfig();
+  console.log('Starting with valid configuration:', options);
+
+  // First fetch the external IPs from the cluster
   const externalIps = await getExternalNodeIPs();
   console.log('Found external IPs in cluster:', externalIps);
 
-  const zone = await getZone(zoneName);
-  await deleteMatchingRecords(zone, records);
-  await addExternalIpsRecords(zone, records, ttl, externalIps);
+  const zone = await getZone(options.zoneName);
+  await deleteMatchingRecords(zone, options.records);
+  await addExternalIpsRecords(zone, options.records, options.ttl, externalIps);
 })();
