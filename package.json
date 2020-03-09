@@ -7,10 +7,13 @@
   "license": "MIT",
   "scripts": {
     "type": "tsc --skipLibCheck",
+    "prettier": "prettier --write \"**/*.ts\"",
     "start": "ts-node -T ./src/index.ts"
   },
   "dependencies": {
+    "@kubernetes/client-node": "^0.11.1",
     "@types/node": "^13.9.0",
+    "prettier": "^1.19.1",
     "ts-node": "^8.6.2",
     "typescript": "^3.8.3"
   }
