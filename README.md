@@ -2,6 +2,8 @@
 
 Kubernetes Google Cloud DNS Sync. Inspired by [kubernetes-cloudflare-sync](https://github.com/calebdoxsey/kubernetes-cloudflare-sync). Keeps the external IP addresses of your kubernetes cluster in sync with Google Cloud DNS.
 
+**WARNING**: Use this at your own risk. Due to faulty usage, you could mess up your DNS records. Always make a backup of your DNS records before deploying this.
+
 ## Quick start
 
 Before you start, make sure you have completed the following steps:
@@ -114,4 +116,4 @@ Configuration is done through environment variables. You can use the following:
 | TTL | `120` | The TTL to add to the DNS record |
 | LOG_LEVEL | `info` | By default logs everything from `info` and above. Allowed values: `['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'none']` |
 | LOG_JSON | `false` | Should the logging be in JSON format? |
-| CRON | `'0 * * * * *'` | The cronjob pattern for when to run this script, default every minute |
+| CRON | `0 * * * * *` | The cronjob pattern for when to run this script, default every minute |
