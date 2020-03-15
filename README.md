@@ -4,6 +4,8 @@ Kubernetes Google Cloud DNS Sync. Inspired by [kubernetes-cloudflare-sync](https
 
 **WARNING**: Use this at your own risk. Due to faulty usage, you could mess up your DNS records. Always make a backup of your DNS records before deploying this.
 
+Docker hub: [jasperkuperus/kubernetes-gcp-dns-sync](https://hub.docker.com/r/jasperkuperus/kubernetes-gcp-dns-sync)
+
 ## Quick start
 
 Before you start, make sure you have completed the following steps:
