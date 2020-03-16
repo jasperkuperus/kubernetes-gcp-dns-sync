@@ -36,7 +36,6 @@ You need the following to run this in Kubernetes:
 First the service account:
 
 ```yaml
----
 apiVersion: v1
 kind: ServiceAccount
 metadata:
