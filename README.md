@@ -115,6 +115,7 @@ Configuration is done through environment variables. You can use the following:
 | ZONE_NAME | `''` | The name of your Google Cloud DNS zone |
 | RECORD_NAMES | `''` | A comma separated list of records you want to keep in sync. Don't forget the trailing dot! E.g.: `a.example.com.,b.example.com` |
 | TTL | `120` | The TTL to add to the DNS record |
+| KUBERNETES_LABELS | `''` | A comma separated list of kubernetes labels that need to be present on a node before taking the external IP of that node into account. The value of these labels should be `'true'` and all the given labels should be present in this way. |
 | LOG_LEVEL | `info` | By default logs everything from `info` and above. Allowed values: `['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'none']` |
 | LOG_JSON | `false` | Should the logging be in JSON format? |
 | CRON | `0 * * * * *` | The cronjob pattern for when to run this script, default every minute |
