@@ -65,17 +65,17 @@ export function validateConfig() {
       .filter(record => record !== ''),
   };
 
-  // if (options.records.length === 0) {
-  //   throw new Error('Please pass record names using env variable RECORD_NAMES');
-  // }
+  if (options.records.length === 0) {
+    throw new Error('Please pass record names using env variable RECORD_NAMES');
+  }
 
-  // if (options.zoneName == null || options.zoneName.trim() === '') {
-  //   throw new Error('Please pass Cloud DNS zone name using env variable ZONE_NAME');
-  // }
+  if (options.zoneName == null || options.zoneName.trim() === '') {
+    throw new Error('Please pass Cloud DNS zone name using env variable ZONE_NAME');
+  }
 
-  // if (options.ttl == null || Number.isNaN(options.ttl)) {
-  //   throw new Error('Please pass an integer value for ttl using env variable TTL');
-  // }
+  if (options.ttl == null || Number.isNaN(options.ttl)) {
+    throw new Error('Please pass an integer value for ttl using env variable TTL');
+  }
 
   return options;
 }

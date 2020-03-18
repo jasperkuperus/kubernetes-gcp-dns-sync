@@ -23,10 +23,8 @@ let externalIps: string[] = [];
  */
 async function run(): Promise<void> {
   try {
-    // First fetch the external IPs from the cluster
-    const newExternalIps = await getExternalNodeIPs();
-    log.info('Found external IPs in cluster: ', newExternalIps);
-
+    // First fetch the right external IPs from the cluster
+    const newExternalIps = await getExternalNodeIPs(options.labels);
     if (newExternalIps.length === 0) {
       throw new Error('Did not find any external IPs');
     } else if (_.isEqual(externalIps.sort(), newExternalIps.sort())) {

@@ -22,7 +22,6 @@ function doesMatchLabels(node: k8s.V1Node, requestedLabels: string[]): boolean {
   }
 
   // Make sure all requested labels are there
-  // TODO: Test
   return requestedLabels.every(requestedLabel => labels[requestedLabel] != null && labels[requestedLabel] === 'true');
 }
 
@@ -33,10 +32,6 @@ function doesMatchLabels(node: k8s.V1Node, requestedLabels: string[]): boolean {
 export async function getExternalNodeIPs(requestedLabels: string[]): Promise<string[]> {
   // First list all nodes in the cluster
   const nodesResult = await k8sApi.listNode('default');
-  nodesResult.body.items.forEach(item => {
-    // promo-app.nl/traefik
-    console.log('Item');
-  });
 
   return (
     nodesResult.body.items
