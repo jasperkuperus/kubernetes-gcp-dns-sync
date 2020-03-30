@@ -26,6 +26,11 @@ const config = convict({
     default: '0 * * * * *',
     env: 'CRON',
   },
+  skipLogInterval: {
+    doc: 'Interval in which you want to show skip messages as info, otherwise debug',
+    default: 120,
+    env: 'SKIP_LOG_INTERVAL',
+  },
   log: {
     level: {
       doc: 'Log everything from this level and above. Set "none" to disable the log stream.',

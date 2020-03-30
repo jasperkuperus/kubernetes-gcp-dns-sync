@@ -15,6 +15,7 @@ log.info(`Initializing Cloud DNS Sync cronjob: '${config.get('cron')}'`);
 
 // Keep a cache of the external IPs
 let externalIps: string[] = [];
+let skipCount = 0;
 
 /**
  * Runs the program. Validates configuration, the retrieves all
@@ -28,7 +29,10 @@ async function run(): Promise<void> {
     if (newExternalIps.length === 0) {
       throw new Error('Did not find any external IPs');
     } else if (_.isEqual(externalIps.sort(), newExternalIps.sort())) {
-      log.info('Skipping DNS updates, IPs stayed the same');
+      let logMethod = skipCount % config.get('skipLogInterval') === 0 ? log.info : log.debug;
+      logMethod('Skipping DNS updates, IPs stayed the same');
+
+      skipCount += 1;
       return;
     }
 
@@ -39,9 +43,10 @@ async function run(): Promise<void> {
 
     // Overwrite the external IPs
     externalIps = newExternalIps;
+    skipCount = 0;
   } catch (error) {
     // It failed, log the error
-    log.error(error);
+    log.error('Error while updating DNS records: ', error);
     process.exit(1);
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "kubernetes-gcp-dns-sync",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": "git@github.com:jasperkuperus/kubernetes-gcp-dns-sync.git",
   "author": "Jasper Kuperus <github@jasperkuperus.nl>",
