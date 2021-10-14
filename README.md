@@ -30,7 +30,7 @@ GOOGLE_APPLICATION_CREDENTIALS=./serviceaccount.json \
 You need the following to run this in Kubernetes:
 
 * A `ServiceAccount` to allow us to list nodes of the cluster (shown below)
-* A secret containing a servive account to Google Cloud DNS
+* A secret containing a service account to Google Cloud DNS
 * A deployment of the [jasperkuperus/kubernetes-gcp-dns-sync](https://hub.docker.com/r/jasperkuperus/kubernetes-gcp-dns-sync) image (shown below)
 
 First the service account:
